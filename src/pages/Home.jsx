@@ -1,11 +1,13 @@
 import { Loader } from 'components/Loader';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { fetchTrendingMovies } from 'services/fetchAPI';
 
 const Home = () => {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const location = useLocation();
 
   useEffect(() => {
     const fetchTrendingFilms = () => {
@@ -30,7 +32,7 @@ const Home = () => {
       <ul>
         {films.map(film => (
           <li key={film.id}>
-            <Link to={`/movies/${film.id}`}>{film.title}</Link>
+            <Link to={`/movies/${film.id}`} state={{from: location}}>{film.title}</Link>
           </li>
         ))}
       </ul>
@@ -38,5 +40,5 @@ const Home = () => {
     </div>
   );
 };
-
+  
 export default Home;
