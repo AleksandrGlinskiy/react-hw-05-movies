@@ -13,10 +13,13 @@ export const fetchTrendingMovies = () => {
   return fetchApi(`${BASE_URL}/trending/all/day?api_key=${API_KEY}`);
 };
 
-export const fetchSearchMovies = (searchMovie) => {
-  return fetchApi(
-    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${searchMovie}`
-  );
+// export const fetchSearchMovies = (searchMovie) => {
+//   return fetchApi(
+//     `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${searchMovie}`
+//   );
+// };
+export const getMovieByName = name => {
+  return fetchApi(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${name}`);
 };
 
 export const fetchMovieDetails = movieId => {

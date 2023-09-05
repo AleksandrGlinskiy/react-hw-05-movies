@@ -1,56 +1,56 @@
-import { Loader } from 'components/Loader';
-import React from 'react'
-import { useState } from 'react'
-import {  Link } from 'react-router-dom';
-import { fetchSearchMovies } from 'services/fetchAPI';
-import Form from '../components/Form'
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { getMovieByName } from 'services/fetchAPI';
+import Form from '../components/Form';
 
 const Movies = () => {
+  const [movies, setMovies] = useState([]);
+  const [query, setQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  console.log(location);
 
-  const [searchFilms, setSearchFilms] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [noMoviesText, setNoMoviesText] = useState(false);
-
-
-    const searchMovies = queryMovie => {
-      setLoading(true);
-
-      fetchSearchMovies(queryMovie)
+  useEffect(() => {
+    const query = searchParams.get('query') ?? '';
+    if (!query) {
+      return;
+    }
+    getMovieByName(query)
       .then(searchResults => {
-        setSearchFilms(searchResults.results);
-        setNoMoviesText(searchResults.length ===0);
+        setMovies(searchResults.results);
       })
-        .catch(error => {
-          console.log(error);
-        })
-        .finally(()=> {
-          setLoading(false);
-        })
-      
+      .catch(error => {
+        console.log(error);
+      });
+  }, [searchParams]);
+
+  const handleChange = e => {
+    setQuery(e.target.value);
   };
 
-
-  
-
-
-
+  const handleSubmit = e => {
+    e.preventDefault();
+    setSearchParams(query !== '' ? { query } : {});
+  };
 
   return (
     <main>
-      <Form searchMovies={searchMovies}/>
-      {loading && <Loader />}
-      {noMoviesText && (
-        <p>There is no movies with this request. Please, try again</p>
-      )}
-      {searchFilms && <ul>
-        {searchFilms.map(film => (
-          <li key={film.id}>
-            <Link to={`/movies/${film.id}`} >{film.title}</Link>
-          </li>
-        ))}
-      </ul> }
-    </main>
-  )
-}
+      <Form onSubmit={handleSubmit} onChange={handleChange} />
 
-export default Movies
+      {
+        <ul>
+          {movies.map(film => (
+            <li key={film.id}>
+              <Link to={`/movies/${film.id}`} state={{ from: location }}>
+                {film.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      }
+    </main>
+  );
+};
+
+export default Movies;

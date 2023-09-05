@@ -1,27 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
 
-const Form = ({searchMovies}) => {
-  const [query, setQuery] = useState('');
-
-  const handleInputChange = e => {
-    setQuery(e.target.value);
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    searchMovies(query.toLowerCase());
-  };
-
-
+const Form = ({onSubmit, onChange}) => {
+  
   return (
-    <form onSubmit={handleSubmit} >
+    <form  onSubmit={onSubmit}>
       <input type="text" 
-      name='query'
-      autoFocus
-      value={query}
-      onChange={handleInputChange}
+     
+      onChange={onChange}
       />
       <button type='submit' >
     Search
