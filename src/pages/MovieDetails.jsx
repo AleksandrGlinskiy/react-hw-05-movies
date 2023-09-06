@@ -23,29 +23,31 @@ const MovieDetails = () => {
     return null;
   }
 
-  const { poster_path, vote_average, overview, genres, title, release_date } = movieDetails;
+  const { poster_path, vote_average, overview, genres, title, release_date } =
+    movieDetails;
   const imgBaseUrl = 'https://image.tmdb.org/t/p/w300/';
   const actuallyDate = new Date(release_date);
-  
 
   return (
     <div>
-      <Link to={backLinkLocationRef.current}> Go back</Link>
+      <Link to={backLinkLocationRef.current}>   Go back</Link>
       <div>
-        <img src= {`${imgBaseUrl}${poster_path}`}  alt={title} />
+        <img src={`${imgBaseUrl}${poster_path}`} alt={title} />
       </div>
-      {/* <h2>{title} ({release_date.slice(0, 4)})</h2> */}
-      <h2>{title} ({actuallyDate.getFullYear()})</h2>
+      
+      <h1>
+        {title} ({actuallyDate.getFullYear()})
+      </h1>
       <p>User Score: {vote_average}</p>
-      <h3>Overview</h3>
+      <h2>Overview</h2>
       <p>{overview}</p>
-      <h4>Genres</h4>
+      <h3>Genres</h3>
       <ul>
         {genres.map(genre => (
           <li key={genre.id}>{genre.name}</li>
         ))}
       </ul>
-          <p>Additional information</p>
+      <p>Additional information</p>
       <ul>
         <li>
           <Link to="cast" state={{ from: backLinkLocationRef }}>

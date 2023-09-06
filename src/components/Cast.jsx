@@ -21,7 +21,7 @@ const Cast = () => {
       .catch(error => {
         console.log(error);
       })
-      .finally(()=>{
+      .finally(() => {
         setLoading(false);
       });
   }, [movieId]);
@@ -30,20 +30,17 @@ const Cast = () => {
     return;
   }
 
-  
   return (
     <div>
-
-{loading && <Loader />}
+      {loading && <Loader />}
       <ul>
-      {actors.map(({profile_path, id, name, character}) => (
-        <li key={id}>
-          <img width="100" src={`${imgBaseUrl}${profile_path}`} alt={name} />
-          <p>{name}</p>
-          <p>Character: {character}</p>
+        {actors.map(({ profile_path, id, name, character }) => (
+          <li key={id}>
+            <img width="100" src={`${imgBaseUrl}${profile_path}`} alt={name} />
+            <p>{name}</p>
+            <p>Character: {character}</p>
           </li>
-        
-      ))}
+        ))}
       </ul>
     </div>
   );
