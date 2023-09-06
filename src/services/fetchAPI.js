@@ -13,11 +13,7 @@ export const fetchTrendingMovies = () => {
   return fetchApi(`${BASE_URL}/trending/all/day?api_key=${API_KEY}`);
 };
 
-// export const fetchSearchMovies = (searchMovie) => {
-//   return fetchApi(
-//     `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${searchMovie}`
-//   );
-// };
+
 export const getMovieByName = name => {
   return fetchApi(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${name}`);
 };
@@ -31,5 +27,5 @@ export const fetchMovieCredits = movieId => {
 };
 
 export const fetchMovieReviews = movieId => {
-  return fetchApi(`${BASE_URL}/${movieId}reviews/?api_key=${API_KEY}`);
+  return fetchApi(`${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`);
 };
