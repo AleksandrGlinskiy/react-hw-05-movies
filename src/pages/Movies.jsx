@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { getMovieByName } from 'services/fetchAPI';
-import Form from '../components/Form';
+import Form from '../components/Form/Form';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);

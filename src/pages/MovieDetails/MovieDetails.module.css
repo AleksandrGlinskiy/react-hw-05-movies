@@ -1,0 +1,40 @@
+.BackLink {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 8px 14px;
+
+  font-weight: 400;
+  font-size: 16px;
+
+  border-radius: 4px;
+
+  border: 2px solid #191d1e;
+text-decoration: none;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.Container {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.ListInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.List {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+

@@ -1,14 +1,15 @@
 import React from 'react'
+import css from './Form.module.css'
 
 const Form = ({onSubmit, onChange}) => {
   
   return (
-    <form  onSubmit={onSubmit}>
+    <form className={css.SearchForm} onSubmit={onSubmit}>
       <input type="text" 
      
       onChange={onChange}
       />
-      <button type='submit' >
+      <button className={css.SearchButton} type='submit' >
     Search
       </button>
     </form>

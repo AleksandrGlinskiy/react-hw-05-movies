@@ -2,8 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieCredits } from '../services/fetchAPI';
-import { Loader } from './Loader';
+import { fetchMovieCredits } from '../../services/fetchAPI';
+import { Loader } from '../Loader/Loader';
+import css from './Cast.module.css'
 
 const Cast = () => {
   const [actors, setActors] = useState([]);
@@ -31,7 +32,7 @@ const Cast = () => {
   }
 
   return (
-    <div>
+    <div className={css.List}>
       {loading && <Loader />}
       <ul>
         {actors.map(({ profile_path, id, name, character }) => (

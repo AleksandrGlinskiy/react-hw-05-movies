@@ -1,4 +1,4 @@
-import { Loader } from 'components/Loader';
+import { Loader } from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { fetchTrendingMovies } from 'services/fetchAPI';
